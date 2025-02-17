@@ -3,7 +3,7 @@ export interface Place {
   latitude: number
   longitude: number
   name: string
-  category: string
   preview: string
-  cover_image_id: string
+  preview_image: string
+  article: string
 }
