@@ -17,7 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="mt-10 rounded-xl p-10 w-4/5 bg-white m-auto flex flex-col gap-15 shadow-xl">
+  <div v-if="place" class="mt-10 rounded-xl p-10 w-4/5 bg-white m-auto flex flex-col gap-15 shadow-xl">
     <p v-html="place.article"></p>
   </div>
 </template>
