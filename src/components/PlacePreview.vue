@@ -16,8 +16,7 @@ defineProps<{ place: Place }>()
       >
         &times;
       </button>
-      <!-- <img :src="place.cover_image_url" alt="Place Image" class="w-full h-auto mb-4" /> -->
-      <img src="@/assets/images/preview.jpg" alt="Place Image" class="w-full h-auto mb-4" />
+      <img :src="`/uploaded/${place.coverImageId}`" alt="Place Image" class="w-full h-auto mb-4" />
       <h2 class="text-xl font-bold">{{ place.name }}</h2>
       <p class="text-gray-700 mb-6">{{ place.preview }}</p>
       <button

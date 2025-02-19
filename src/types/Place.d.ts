@@ -1,9 +1,11 @@
 export interface Place {
   id: string
+  name: string
   latitude: number
   longitude: number
-  name: string
-  category: string
   preview: string
-  cover_image_id: string
+  coverImageId: string
+  article: string
 }
+
+export type NewPlace = Omit<Place, 'id'>
