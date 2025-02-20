@@ -105,7 +105,7 @@ const submitForm = async () => {
             type="text"
             id="name"
             class="border border-gray-300 text-sm rounded-lg w-full p-2.5"
-            :class="{ 'border-red-300': validator.name.$error, 'border-3': validator.name.$error }"
+            :class="{ 'border-red-300 border-3': validator.name.$error }"
             placeholder="НИУ ИТМО"
           />
           <div v-for="error of validator.name.$errors" :key="error.$uid">
@@ -120,10 +120,7 @@ const submitForm = async () => {
             step="0.000001"
             id="latitude"
             class="border border-gray-300 text-sm rounded-lg w-full p-2.5"
-            :class="{
-              'border-red-300': validator.latitude.$error,
-              'border-3': validator.latitude.$error,
-            }"
+            :class="{'border-red-300 border-3': validator.latitude.$error }"
             placeholder="59.956285"
           />
           <div v-for="error of validator.latitude.$errors" :key="error.$uid">
@@ -138,10 +135,7 @@ const submitForm = async () => {
             step="0.000001"
             id="longitude"
             class="border border-gray-300 text-sm rounded-lg w-full p-2.5"
-            :class="{
-              'border-red-300': validator.longitude.$error,
-              'border-3': validator.longitude.$error,
-            }"
+            :class="{ 'border-red-300 border-3': validator.longitude.$error }"
             placeholder="30.309839"
           />
           <div v-for="error of validator.longitude.$errors" :key="error.$uid">
@@ -155,10 +149,7 @@ const submitForm = async () => {
             type="text"
             id="preview"
             class="border border-gray-300 text-sm rounded-lg w-full p-2.5"
-            :class="{
-              'border-red-300': validator.preview.$error,
-              'border-3': validator.preview.$error,
-            }"
+            :class="{ 'border-red-300 border-3': validator.preview.$error }"
           />
           <div v-for="error of validator.preview.$errors" :key="error.$uid">
             <div class="text-red-400">{{ error.$message }}</div>
@@ -168,10 +159,7 @@ const submitForm = async () => {
           <label
             for="preview-image"
             class="flex flex-col justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
-            :class="{
-              'border-red-300': validator.coverImageId.$error,
-              'border-3': validator.coverImageId.$error,
-            }"
+            :class="{ 'border-red-300 border-3': validator.coverImageId.$error }"
           >
             <img v-if="formData.coverImageId" :src="`/uploaded/${formData.coverImageId}`" />
             <div v-if="!formData.coverImageId" class="flex flex-col items-center pt-5 pb-6">
@@ -217,11 +205,7 @@ const submitForm = async () => {
         <label for="article" class="block mb-2 text-lg font-medium">Статья</label>
         <div
           class="h-[95%]"
-          :class="{
-            '!border-red-300': validator.article.$error,
-            '!border-3': validator.article.$error,
-            '!border': validator.article.$error,
-          }"
+          :class="{'!border-red-300 !border-3 !border': validator.article.$error}"
         >
           <MdEditor
             id="article"
