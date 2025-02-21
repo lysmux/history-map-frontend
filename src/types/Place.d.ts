@@ -4,8 +4,6 @@ export interface Place {
   latitude: number
   longitude: number
   preview: string
-  coverImageId: string
+  previewImage: string
   article: string
 }
-
-export type NewPlace = Omit<Place, 'id'>

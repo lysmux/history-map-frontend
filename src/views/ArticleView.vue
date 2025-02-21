@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref, inject, type Ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { MdPreview } from 'md-editor-v3'
 
 import type { Place } from '../types/Place.d'
-import { getPlace } from '../utils/apiClient'
 
 const route = useRoute()
-const place = ref<Place>()
+const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
 
-onMounted(async () => {
-  const id = Array.isArray(route.params.id) ? route.params.id[0] : route.params.id
-  place.value = await getPlace(id)
-})
+const place = ref<Place>()
+const places = inject<Ref<Place[]>>('places')
+
+if (places) place.value = places.value.filter((place) => place.id == id)[0]
 </script>
 
 <template>

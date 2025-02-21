@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, watch, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -27,15 +27,10 @@ onMounted(() => {
     { opacity: 0.6 },
   ).addTo(map)
 
-  watch(
-    () => places,
-    () => {
-      places.forEach((place) => {
-        const marker = L.marker([place.latitude, place.longitude]).addTo(map)
-        marker.on('click', () => emit('selectPlace', place))
-      })
-    },
-  )
+  places.forEach((place) => {
+    const marker = L.marker([place.latitude, place.longitude]).addTo(map)
+    marker.on('click', () => emit('selectPlace', place))
+  })
 })
 </script>
 
