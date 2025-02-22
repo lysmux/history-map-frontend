@@ -23,7 +23,6 @@
             <li
               v-for="place in places"
               :key="place.id"
-              @click="() => alert(`Selected: ${place.name}`)"
             >
               {{ place.name }}
             </li>
