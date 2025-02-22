@@ -15,9 +15,16 @@ onMounted(() => {
   const map = L.map(mapRef.value as HTMLDivElement).setView([59.957355, 30.310198], 13)
   map.attributionControl.setPrefix('')
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
-  }).addTo(map)
+  // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  //   attribution: '&copy; OpenStreetMap contributors',
+  // }).addTo(map)
+
+  const bounds = L.latLngBounds(
+    L.latLng(60.097808, 30.082917),
+    L.latLng(59.794452, 30.582102)
+  )
+  map.setMaxBounds(bounds)
+
   L.imageOverlay(
     '/map.jpg',
     [
