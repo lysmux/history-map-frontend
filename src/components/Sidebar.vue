@@ -12,15 +12,13 @@
     }>();
     
     const handlePlaceClick = (place: Place) => {
-      emit('select-place', place); // Emit the selected place
+      emit('select-place', place);
     };
     </script>
     
     <template>
       <div class="sidebar-container" :class="{ 'sidebar-hidden': !isVisible }">
-        <!-- Sidebar -->
         <div class="sidebar">
-          <!-- Sidebar Content -->
           <ul>
             <li
               v-for="place in places"
@@ -32,7 +30,6 @@
           </ul>
         </div>
     
-        <!-- Toggle Button -->
         <button @click="emit('toggle-sidebar')" class="toggle-button">
           <span class="arrow" :class="{ 'arrow-collapsed': isVisible }"></span>
         </button>
@@ -40,6 +37,7 @@
     </template>
     
     <style scoped>
+      /* TODO: tailwind.css */
     .sidebar-container {
       position: fixed;
       top: 60px;

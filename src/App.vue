@@ -8,10 +8,8 @@
   
   import type { Place } from './types/Place.d';
   
-  // State for places
   const places = ref<Place[]>([]);
   
-  // Load places from JSON files
   const modules = import.meta.glob<{ default: unknown }>('@/assets/articles/*.json', { eager: true });
   const requiredKeys: (keyof Place)[] = [
     'name',
@@ -28,13 +26,10 @@
       return requiredKeys.every((key) => key in (el as object));
     }) as Place[];
   
-  // Provide places to the app
   provide('places', readonly(places));
   
-  // State for sidebar visibility
   const isSidebarVisible = ref(true);
   
-  // Function to toggle sidebar visibility
   const toggleSidebar = () => {
     isSidebarVisible.value = !isSidebarVisible.value;
   };
@@ -42,22 +37,18 @@
   
   <template>
     <div class="w-full h-screen flex flex-col">
-      <!-- Header -->
       <Header
         :is-sidebar-visible="isSidebarVisible"
         @toggle-sidebar="toggleSidebar"
       />
   
-      <!-- Main Content Area -->
       <div class="flex flex-1 overflow-hidden relative">
-        <!-- Sidebar -->
         <Sidebar
           :is-visible="isSidebarVisible"
           :places="places"
           @toggle-sidebar="toggleSidebar"
         />
   
-        <!-- RouterView -->
         <div class="router-view">
           <RouterView />
         </div>
@@ -66,7 +57,7 @@
   </template>
   
   <style>
-  /* Optional: Add global styles if needed */
+  /* TODO: tailwind.css */
   body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -75,6 +66,6 @@
   .router-view {
     flex: 1;
     overflow: auto;
-    width: 100%; /* Ensure RouterView takes up the full width */
+    width: 100%;
   }
   </style>
