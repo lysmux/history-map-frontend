@@ -22,7 +22,7 @@ const formData = reactive({
   longitude: 0,
   name: '',
   preview: '',
-  coverImage: '',
+  previewImage: '',
   article: '',
 })
 
@@ -47,7 +47,7 @@ const formRules = computed(() => ({
     required,
     maxLength: maxLength(300),
   },
-  coverImage: {
+  previewImage: {
     required,
   },
   article: {
@@ -88,7 +88,7 @@ const handlePreviewImgUpload = async (event: Event) => {
   const reader = new FileReader()
   reader.readAsDataURL(file)
   reader.onload = () => {
-    formData.coverImage = reader.result as string
+    formData.previewImage = reader.result as string
   }
 }
 
@@ -177,10 +177,10 @@ const submitForm = async () => {
           <label
             for="preview-image"
             class="flex flex-col justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer"
-            :class="{ 'border-red-300 border-3': validator.coverImage.$error }"
+            :class="{ 'border-red-300 border-3': validator.previewImage.$error }"
           >
-            <img v-if="formData.coverImage" :src="formData.coverImage" />
-            <div v-if="!formData.coverImage" class="flex flex-col items-center pt-5 pb-6">
+            <img v-if="formData.previewImage" :src="formData.previewImage" />
+            <div v-if="!formData.previewImage" class="flex flex-col items-center pt-5 pb-6">
               <svg
                 class="w-8 h-8 mb-4 text-gray-500"
                 aria-hidden="true"
@@ -208,7 +208,7 @@ const submitForm = async () => {
               @change="handlePreviewImgUpload"
             />
           </label>
-          <div v-for="error of validator.coverImage.$errors" :key="error.$uid">
+          <div v-for="error of validator.previewImage.$errors" :key="error.$uid">
             <div class="text-red-400">{{ error.$message }}</div>
           </div>
         </div>
