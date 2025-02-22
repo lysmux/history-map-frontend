@@ -1,9 +1,28 @@
+<template>
+  <div class="w-screen h-screen flex flex-col">
+    <!-- Header -->
+    <Header :is-sidebar-visible="isSidebarVisible" @toggle-sidebar="toggleSidebar" />
+
+    <!-- Main Content Area -->
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Sidebar -->
+      <Sidebar :is-visible="isSidebarVisible" />
+
+      <!-- RouterView -->
+      <div class="flex-1 overflow-auto">
+        <RouterView />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 /// <reference types="vite/client" />
 
 import { provide, ref, readonly } from 'vue'
 import { RouterView } from 'vue-router'
 import Header from './components/AppHeader.vue'
+import Sidebar from './components/Sidebar.vue'
 
 import type { Place } from './types/Place.d'
 
