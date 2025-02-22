@@ -1,17 +1,19 @@
 <script setup lang="ts">
-    import { defineProps, defineEmits } from 'vue';
-    import type { Place } from '../types/Place.d';
+    import type { Place } from '../types/Place.d'
     
-    // Define props
-    const props = defineProps<{
+    defineProps<{
       isVisible: boolean;
       places: Place[];
     }>();
     
-    // Define emits
     const emit = defineEmits<{
       (event: 'toggle-sidebar'): void;
+      (event: 'select-place', place: Place): void;
     }>();
+    
+    const handlePlaceClick = (place: Place) => {
+      emit('select-place', place); // Emit the selected place
+    };
     </script>
     
     <template>
@@ -23,6 +25,7 @@
             <li
               v-for="place in places"
               :key="place.id"
+              @click="handlePlaceClick(place)"
             >
               {{ place.name }}
             </li>
@@ -38,30 +41,29 @@
     
     <style scoped>
     .sidebar-container {
-      position: fixed; /* Fix the sidebar container to the left side of the screen */
-      top: 60px; /* Position below the header */
+      position: fixed;
+      top: 60px;
       left: 0;
-      z-index: 1000; /* Ensure the sidebar is above the RouterView */
-      transition: transform 0.3s ease; /* Smooth transition for opening/closing */
+      z-index: 1000;
+      transition: transform 0.3s ease;
     }
     
     .sidebar-hidden {
-      transform: translateX(-250px); /* Hide the sidebar by moving it to the left */
+      transform: translateX(-250px);
     }
     
     .sidebar {
-      width: 250px; /* Fixed width for the sidebar */
+      width: 250px;
       background-color: #2c3e50;
       color: white;
-      height: calc(100vh - 60px); /* Full height minus header height */
-      overflow-y: auto; /* Make the sidebar scrollable if content overflows */
+      height: calc(100vh - 60px);
+      overflow-y: auto;
     }
     
-    /* Toggle Button */
     .toggle-button {
       position: absolute;
-      right: -20px; /* Position the button at the right edge of the sidebar */
-      top: 50%; /* Center vertically */
+      right: -20px;
+      top: 50%;
       transform: translateY(-50%);
       width: 20px;
       height: 60px;
@@ -71,27 +73,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 0 8px 8px 0; /* Rounded right edges */
+      border-radius: 0 8px 8px 0;
       padding: 0;
       outline: none;
-      z-index: 1001; /* Ensure the button is above the sidebar */
+      z-index: 1001;
     }
     
-    /* Arrow Styling */
     .arrow {
       width: 0;
       height: 0;
       border-top: 10px solid transparent;
       border-bottom: 10px solid transparent;
-      border-left: 10px solid white; /* Arrow pointing to the right */
+      border-left: 10px solid white;
       transition: transform 0.3s ease;
     }
     
     .arrow-collapsed {
-      transform: rotate(180deg); /* Arrow pointing to the left when sidebar is hidden */
+      transform: rotate(180deg);
     }
     
-    /* Sidebar List Styling */
     ul {
       list-style-type: none;
       padding: 0;

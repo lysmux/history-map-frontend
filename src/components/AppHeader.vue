@@ -18,10 +18,6 @@
       <!-- Title -->
       <span class="text-xl font-bold">Наука блокадного Ленинграда</span>
   
-      <!-- Toggle Button -->
-      <button @click="emit('toggle-sidebar')" class="sidebar-toggle">
-        {{ isSidebarVisible ? 'Hide Sidebar' : 'Show Sidebar' }}
-      </button>
     </div>
   </template>
   
